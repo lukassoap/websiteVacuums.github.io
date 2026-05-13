@@ -19,6 +19,31 @@ En la carpeta `stylesheets`, el archivo `style.css`, contiene las reglas CSS del
 Definir primero estilos globales (`body`, `html`), luego componentes (`header`, `nav`, `cards`, `footer`), por ejemplo:
 
 ```css
+:root {
+  color-scheme: dark;
+  font-family: Inter, sans-serif;
+}
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  background: #050816;
+}
+
+.site-header {
+  position: sticky;
+}
+
+.product-card {
+  border-radius: 1.5rem;
+}
+
+.site-footer {
+  padding: 2rem 0;
+}
 
 ```
 
@@ -27,7 +52,21 @@ Definir primero estilos globales (`body`, `html`), luego componentes (`header`, 
 Usar comentarios para dividir secciones del archivo CSS, por ejemplo:
 
 ```css
+/* ===== HEADER ===== */
+.site-header {
+  position: sticky;
+  top: 0;
+}
 
+/* ===== PRODUCTOS ===== */
+.product-card {
+  border-radius: 1.5rem;
+}
+
+/* ===== FOOTER ===== */
+.site-footer {
+  padding: 2rem 0;
+}
 ```
 
 ## 2. Sintaxis y formato
@@ -37,7 +76,10 @@ Usar comentarios para dividir secciones del archivo CSS, por ejemplo:
 Usar correctamente `selector { propiedad: valor; }`, por ejemplo:
 
 ```css
-
+.container {
+  width: 100%;
+  margin: 0 auto;
+}
 ```
 
 ### 2.2 Criterio: Indentación 
@@ -45,7 +87,11 @@ Usar correctamente `selector { propiedad: valor; }`, por ejemplo:
 2 o 4 espacios consistentes, por ejemplo:
 
 ```css
-
+.hero-card {
+  background: rgba(15, 23, 42, 0.95);
+  border-radius: 2rem;
+  padding: 2rem;
+}
 ```
 
 ### 2.3 Criterio: Cierre de reglas  
@@ -53,7 +99,10 @@ Usar correctamente `selector { propiedad: valor; }`, por ejemplo:
 Siempre cerrar con `;` y `}`, por ejemplo:
 
 ```css
-
+.product-price {
+  font-size: 1.7rem;
+  font-weight: 700;
+}
 ```
 
 ### 2.4 Criterio: Legibilidad 
@@ -61,7 +110,11 @@ Siempre cerrar con `;` y `}`, por ejemplo:
 Una propiedad por línea, por ejemplo:
 
 ```css
-
+.feature-item {
+  background: rgba(14, 23, 42, 0.9);
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+}
 ```
 
 ## 3. Uso de selectores
@@ -71,7 +124,10 @@ Una propiedad por línea, por ejemplo:
 Preferir clases (.clase) sobre etiquetas o IDs, por ejemplo:
 
 ```css
-
+.nav-links {
+  display: flex;
+  gap: 1.25rem;
+}
 ```
 
 ### 3.2 Criterio: Nombres 
@@ -79,7 +135,13 @@ Preferir clases (.clase) sobre etiquetas o IDs, por ejemplo:
 Descriptivos, en minúsculas y con guiones (`.menu-principal`), por ejemplo:
 
 ```css
+.product-card {
+  padding: 1.75rem;
+}
 
+.contact-card {
+  border-radius: 1.75rem;
+}
 ```
 
 ### 3.3 Criterio: Complejidad 
@@ -87,7 +149,15 @@ Descriptivos, en minúsculas y con guiones (`.menu-principal`), por ejemplo:
 Evitar selectores anidados innecesarios, por ejemplo:
 
 ```css
+/* Correcto */
+.product-card h3 {
+  margin: 0;
+}
 
+/* Evitar */
+.section .product-grid .product-card .content h3 {
+  margin: 0;
+}
 ```
 
 ## 4. Uso de clases
@@ -97,7 +167,10 @@ Evitar selectores anidados innecesarios, por ejemplo:
 Usar clases que representen claramente la intención visual, por ejemplo:
 
 ```css
-
+.primary-btn {
+  background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+  border-radius: 999px;
+}
 ```
 
 ### 4.2 Criterio: Orden 
@@ -105,14 +178,31 @@ Usar clases que representen claramente la intención visual, por ejemplo:
 Mantener un orden lógico: `layout → espaciado → color → tipografía`, por ejemplo:
 
 ```css
-
+.hero-card {
+  display: flex;
+  padding: 2rem;
+  background: rgba(15, 23, 42, 0.95);
+  color: #eef2ff;
+  font-size: 1rem;
+}
 ```
 ### 4.3 Criterio: Legibilidad 
 
 Evitar listas desordenadas de clases, por ejemplo:
 
 ```css
+/* Correcto */
+.secondary-btn {
+  color: #cbd5e1;
+  border: 1px solid rgba(148, 163, 184, 0.32);
+  padding: 0.9rem 1.5rem;
+}
 
+/* Evitar */
+.btn2 {
+  c: white;
+  p: 10px;
+}
 ```
 
 ## Referencias
