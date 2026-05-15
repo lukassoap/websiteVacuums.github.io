@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Hanken+Grotesk:wght@600;700&family=Geist:wght@400;500;600&display=swap');
+
+/* Fallback/Base styles */
+:root {
+  --primary: #0041c8;
+  --surface: #f7f9fb;
+  --on-surface: #191c1e;
+  --secondary: #5d5e61;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none; 
+  scrollbar-width: none;
+}
+
+#view-home, #view-parts {
+  transition: opacity 0.3s ease-in-out;
+}
