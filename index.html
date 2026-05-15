@@ -1,13 +1,387 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AeroPrecision | Engineering Excellence</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
+<!DOCTYPE html>
 
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;family=Geist:wght@400;500&amp;family=Hanken+Grotesk:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed": "#001551",
+                    "surface-variant": "#e0e3e5",
+                    "on-error-container": "#93000a",
+                    "on-background": "#191c1e",
+                    "tertiary-container": "#596980",
+                    "primary": "#0041c8",
+                    "surface": "#f7f9fb",
+                    "on-secondary-fixed": "#1a1c1e",
+                    "on-tertiary-fixed": "#0b1c30",
+                    "on-secondary-fixed-variant": "#454749",
+                    "secondary": "#5d5e61",
+                    "on-primary-fixed-variant": "#0039b3",
+                    "primary-fixed-dim": "#b6c4ff",
+                    "error": "#ba1a1a",
+                    "on-surface-variant": "#434656",
+                    "surface-bright": "#f7f9fb",
+                    "secondary-fixed": "#e2e2e5",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-fixed": "#d3e4fe",
+                    "surface-tint": "#004dea",
+                    "on-error": "#ffffff",
+                    "surface-container": "#eceef0",
+                    "surface-dim": "#d8dadc",
+                    "surface-container-high": "#e6e8ea",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "inverse-primary": "#b6c4ff",
+                    "on-primary": "#ffffff",
+                    "surface-container-highest": "#e0e3e5",
+                    "error-container": "#ffdad6",
+                    "outline-variant": "#c3c5d9",
+                    "outline": "#737688",
+                    "secondary-container": "#e2e2e5",
+                    "tertiary-fixed-dim": "#b7c8e1",
+                    "secondary-fixed-dim": "#c6c6c9",
+                    "on-secondary-container": "#636467",
+                    "background": "#f7f9fb",
+                    "on-primary-container": "#e3e6ff",
+                    "on-tertiary-container": "#dbe9ff",
+                    "inverse-surface": "#2d3133",
+                    "on-surface": "#191c1e",
+                    "tertiary": "#415166",
+                    "surface-container-low": "#f2f4f6",
+                    "on-tertiary-fixed-variant": "#38485d",
+                    "primary-container": "#0055ff",
+                    "inverse-on-surface": "#eff1f3",
+                    "primary-fixed": "#dce1ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-mobile": "16px",
+                    "container-max": "1280px",
+                    "section-gap-md": "80px",
+                    "section-gap-lg": "120px",
+                    "gutter": "24px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "label-sm": ["Geist"],
+                    "display-lg": ["Hanken Grotesk"],
+                    "headline-lg": ["Hanken Grotesk"],
+                    "label-md": ["Geist"],
+                    "headline-lg-mobile": ["Hanken Grotesk"],
+                    "headline-md": ["Hanken Grotesk"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { background-color: #f7f9fb; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-nav { border-bottom: 2px solid #0041c8; padding-bottom: 4px; }
+        
+        /* Sidebar transition effect */
+        .sidebar-scroll-fade {
+            transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface">
+<!-- TopNavBar -->
+<header class="bg-surface sticky top-0 z-50 border-b border-outline-variant h-20">
+<div class="flex justify-between items-center w-full px-gutter max-w-container-max mx-auto h-full">
+<div class="font-headline-md text-headline-md font-bold tracking-tight text-on-surface">AeroPrecision</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="font-label-md text-label-md text-primary border-b-2 border-primary pb-1" href="#">Replacement Parts</a>
+<a class="font-label-md text-label-md text-secondary hover:text-primary transition-colors" href="#">Maintenance Kits</a>
+<a class="font-label-md text-label-md text-secondary hover:text-primary transition-colors" href="#">Insurance</a>
+<a class="font-label-md text-label-md text-secondary hover:text-primary transition-colors" href="#">Support</a>
+</nav>
+<div class="flex items-center gap-4">
+<div class="hidden lg:flex items-center bg-surface-container border border-outline-variant px-4 py-2 rounded-lg">
+<span class="material-symbols-outlined text-secondary mr-2">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-label-md w-48" placeholder="Find part by SKU..." type="text"/>
+</div>
+<button class="p-2 hover:bg-surface-container-low transition-all duration-200">
+<span class="material-symbols-outlined text-on-surface">shopping_cart</span>
+</button>
+<button class="p-2 hover:bg-surface-container-low transition-all duration-200">
+<span class="material-symbols-outlined text-on-surface">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<main>
+<!-- Category Banner -->
+<section class="relative w-full h-[400px] overflow-hidden flex items-center">
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="A macro studio photograph of high-tech mechanical components and filters organized on a clean, laboratory-grade white surface. The lighting is cold and precise, casting soft technical shadows that emphasize the high-performance engineering of the parts. The overall aesthetic is minimalist and corporate modern, reflecting absolute reliability and engineering excellence with a palette of whites, slates, and surgical blues." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4wYGxNFG98oBmM5yKZTvLPNzpSuz0cTqBEX9COghXgzZGsn0irRWZ9Tk9_cceihU3A02s82g_aYQnCu1aQI5a2mLiKmlxqEfllnc7V86DFwnLvPBvYnFuD1Ei1qLEdIAT2aVQ2J3ooMGHwf_T9bdVS0ilfEZVZPjelthETLYNw0COmJlheS5nkVzzI9Tgwp2V60eWLU-qHg_Qa4qrREhl3f0wDAVFUzyQcLY4Y08lfxT5NZjzhIjvwf2eTsF9y-HKdo-rURKCiMgm"/>
+<div class="absolute inset-0 bg-gradient-to-r from-on-background/60 to-transparent"></div>
+<div class="relative w-full max-w-container-max mx-auto px-gutter">
+<div class="max-w-2xl">
+<span class="inline-block bg-primary text-white font-label-sm text-label-sm px-3 py-1 mb-4 tracking-wider uppercase">Genuine AeroPrecision™ Components</span>
+<h1 class="font-display-lg text-display-lg text-white mb-6">Precision Engineered <br/>Replacement Parts</h1>
+<p class="font-body-lg text-body-lg text-white/80">Maintain peak performance and system longevity with factory-certified components designed for the AeroStream and Pro-Series ecosystems.</p>
+</div>
+</div>
+</section>
+<!-- Product Filters & Grid -->
+<section class="py-section-gap-md max-w-container-max mx-auto px-gutter">
+<div class="flex flex-col md:flex-row gap-12">
+<!-- Technical Filters -->
+<aside class="w-full md:w-80 flex-shrink-0 sidebar-scroll-fade" id="category-sidebar">
+<div class="sticky top-28 space-y-10">
+<div>
+<h3 class="font-label-md text-body-lg uppercase tracking-widest text-secondary mb-6 font-bold">Categories</h3>
+<div class="space-y-4">
+<label class="flex items-center gap-4 p-3 hover:bg-surface-container-low rounded cursor-pointer transition-all">
+<input checked="" class="w-5 h-5 rounded border-outline text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-lg text-body-lg">Filters &amp; Seals</span>
+</label>
+<label class="flex items-center gap-4 p-3 hover:bg-surface-container-low rounded cursor-pointer transition-all">
+<input class="w-5 h-5 rounded border-outline text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-lg text-body-lg">Rotary Brushes</span>
+</label>
+<label class="flex items-center gap-4 p-3 hover:bg-surface-container-low rounded cursor-pointer transition-all">
+<input class="w-5 h-5 rounded border-outline text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-lg text-body-lg">Drive Systems</span>
+</label>
+<label class="flex items-center gap-4 p-3 hover:bg-surface-container-low rounded cursor-pointer transition-all">
+<input class="w-5 h-5 rounded border-outline text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-lg text-body-lg">Power Cells</span>
+</label>
+</div>
+</div>
+<div class="pt-8 border-t border-outline-variant">
+<h3 class="font-label-md text-body-lg uppercase tracking-widest text-secondary mb-6 font-bold">Device Compatibility</h3>
+<select class="w-full bg-surface-container-lowest border-outline-variant rounded-lg font-body-md p-4 focus:border-primary focus:ring-0">
+<option>AeroStream Pro X1</option>
+<option>AeroStream Standard</option>
+<option>Legacy V2 Series</option>
+</select>
+</div>
+</div>
+</aside>
+<!-- Product Grid -->
+<div class="flex-grow">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-y-12 gap-x-gutter">
+<!-- Product 1: Filter -->
+<div class="group">
+<div class="aspect-square bg-surface-container-low overflow-hidden rounded mb-4 relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A high-resolution product shot of a HEPA-H13 rated air filter for a high-end vacuum system. The filter is shown from a 45-degree angle, highlighting the pristine white pleats and the reinforced industrial blue polymer frame. The background is a clean neutral gray, and the lighting is sharp, emphasizing the technological precision and high-performance nature of the component." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCx_yDXvMCMUETb-mpcU09dRDZJ8qsECMT75DBfd2Bv6VV2K3NiMxJn0TrTkYydBPHjCtuRuYHO7CXjiufwzdQszXn4z09NbaUpM_842ac5UFv13U2cXdQyl_fi4udayrz-Aen__QKuVhzFfaobh4Ommt_LnB5YEBzxr6JBb7i7OANzgk_iF0MCk1Mb_axWZaCE__TulEgaEDPu5xkIqrTNKvTXgrXZbuCxzqi_4sWMVF1xMN8_qRqq6ylLAbfgC-2aGSZXg9MqsboM"/>
+<div class="absolute top-4 left-4">
+<span class="bg-surface-container-highest px-2 py-1 rounded-full font-label-sm text-label-sm text-on-surface-variant">HEPA-H13</span>
+</div>
+</div>
+<div class="space-y-1">
+<p class="font-label-sm text-label-sm text-secondary uppercase tracking-wider">SKU: AP-FIL-092</p>
+<h3 class="font-headline-md text-headline-md text-on-surface">Ultra-Fine Particulate Filter</h3>
+<p class="font-body-md text-body-md text-on-surface-variant pb-4">Compatible with all Pro-Series units. Replacement cycle: 6 months.</p>
+<div class="flex items-center justify-between pt-2 border-t border-outline-variant">
+<span class="font-headline-md text-headline-md text-primary">$42.00</span>
+<button class="bg-primary text-white px-6 py-2 rounded font-label-md hover:bg-on-primary-fixed-variant transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+                                    ADD
+                                </button>
+</div>
+</div>
+</div>
+<!-- Product 2: Brush -->
+<div class="group">
+<div class="aspect-square bg-surface-container-low overflow-hidden rounded mb-4 relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A technical product view of a high-performance carbon fiber rotary brush bar. The brush bristles are arranged in a tight spiral, showing the dual-texture design for different floor surfaces. The central axle is made of brushed aluminum, gleaming under focused studio lights against a soft-recessed gray background. The mood is professional and focuses on hardware durability." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzUAkZ1g56-uvZEC5lElsCJuXzOI9MsTVd9lEJ4Tp0ZTspg_pxZZuc3wX1RfXQmbyF35YCMY-pyHJ108SVxfs7d1FuUopDXzjfdzmHcX-cVrcaZhF4DXV6-MEtSDewYTqMd3riIxU98GCtzF342A5scaDlZZwquGEyWIF__gYVwdvgwjJvyfrp2ewmZNX_WAZbOLx3Ob_gSWdeBUJbn3W2U6pIVdDv_HCoBjiNB2xFMIdf9n-RgAfyu7xlsJ-34HxODee8ry68dRFj"/>
+<div class="absolute top-4 left-4">
+<span class="bg-surface-container-highest px-2 py-1 rounded-full font-label-sm text-label-sm text-on-surface-variant">Anti-Tangle</span>
+</div>
+</div>
+<div class="space-y-1">
+<p class="font-label-sm text-label-sm text-secondary uppercase tracking-wider">SKU: AP-BRS-115</p>
+<h3 class="font-headline-md text-headline-md text-on-surface">Spiral Carbon-Fiber Brush</h3>
+<p class="font-body-md text-body-md text-on-surface-variant pb-4">Enhanced debris extraction for multi-surface flooring.</p>
+<div class="flex items-center justify-between pt-2 border-t border-outline-variant">
+<span class="font-headline-md text-headline-md text-primary">$68.00</span>
+<button class="bg-primary text-white px-6 py-2 rounded font-label-md hover:bg-on-primary-fixed-variant transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+                                    ADD
+                                </button>
+</div>
+</div>
+</div>
+<!-- Product 3: Battery -->
+<div class="group">
+<div class="aspect-square bg-surface-container-low overflow-hidden rounded mb-4 relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A high-end lithium-ion battery pack designed for industrial-grade tools. The casing is a matte black polycarbonate with a digital LED power indicator showing a full charge in green. The design is sleek and modern, emphasizing high energy density and technical reliability. Shot in a clean, minimalist environment with soft cinematic highlights across the battery's surface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdZJFDz3aZs1TCrZc6pPEdMONjviALglGRCT2Omf52n5JU4601C5XgA5TOo6H1ZckEyssEfHOsI8rYAmxIDsuzRYcHlePHzaPy57iDcUG5CWaBL8A2Mgx_2IVdaqinJXWXA4Jr9RaFmHcpZOGBbYMDgsK1bd7buz0BWxavL3BkbH-wgr6s3mlsUls4A_XsIUqoc3XzGrUuXs0lyrVcYd72YL1mPRufci-VomLXEbbrRszZfQjmvGVQB5wtv4kT35ciJJnkLNpYLzEu"/>
+<div class="absolute top-4 left-4">
+<span class="bg-primary text-white px-2 py-1 rounded-full font-label-sm text-label-sm uppercase">Extended Run</span>
+</div>
+</div>
+<div class="space-y-1">
+<p class="font-label-sm text-label-sm text-secondary uppercase tracking-wider">SKU: AP-PWR-500</p>
+<h3 class="font-headline-md text-headline-md text-on-surface">Lithium-Max Power Cell</h3>
+<p class="font-body-md text-body-md text-on-surface-variant pb-4">60-minute continuous runtime. Quick-charge enabled (80% in 45m).</p>
+<div class="flex items-center justify-between pt-2 border-t border-outline-variant">
+<span class="font-headline-md text-headline-md text-primary">$185.00</span>
+<button class="bg-primary text-white px-6 py-2 rounded font-label-md hover:bg-on-primary-fixed-variant transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+                                    ADD
+                                </button>
+</div>
+</div>
+</div>
+<!-- Product 4: Belt -->
+<div class="group">
+<div class="aspect-square bg-surface-container-low overflow-hidden rounded mb-4 relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A technical close-up of a high-torque reinforced drive belt for precision machinery. The textured rubber surface and internal threading are clearly visible, emphasizing durability and technical specification. The lighting is focused and direct, highlighting the engineering quality of the material against a stark, high-contrast studio setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1e5T1PjKQfhd7KuEkbbOEn9DvD__XxAnjI_YW_hDkP-PBHclhkdQ9nlE-R_eIeFZanDWzuDf9r8CTVm8QtVVnQT6WjFLwkQlDc4-lLsXO-SZxuYDfJ358EXAxxnzIYrHqLwUrDy8mkf9SGIZHhF6j8E2dhXTAaAmrv42IclUVeumGn1zUv1oVpM2FpGI_DMEcYKD4aZNiruLvMuEYYJ4YxPN53iJJqZyrwv1AghulmG5_qxnTEXBA8vqMJmVhPZJWaVWT3XbWJH1Y"/>
+</div>
+<div class="space-y-1">
+<p class="font-label-sm text-label-sm text-secondary uppercase tracking-wider">SKU: AP-DRV-022</p>
+<h3 class="font-headline-md text-headline-md text-on-surface">Kevlar Reinforced Drive Belt</h3>
+<p class="font-body-md text-body-md text-on-surface-variant pb-4">Zero-slip architecture for consistent torque delivery.</p>
+<div class="flex items-center justify-between pt-2 border-t border-outline-variant">
+<span class="font-headline-md text-headline-md text-primary">$18.00</span>
+<button class="bg-primary text-white px-6 py-2 rounded font-label-md hover:bg-on-primary-fixed-variant transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+                                    ADD
+                                </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Technical Specs / Compatibility Table -->
+<section class="bg-surface-container-lowest py-section-gap-lg">
+<div class="max-w-container-max mx-auto px-gutter">
+<div class="mb-12">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-2">Technical Compatibility Grid</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Verify part compatibility across the AeroPrecision hardware ecosystem.</p>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b-2 border-on-surface">
+<th class="py-4 font-label-md text-label-md uppercase text-secondary">Component Type</th>
+<th class="py-4 font-label-md text-label-md uppercase text-secondary">Pro-Series X1</th>
+<th class="py-4 font-label-md text-label-md uppercase text-secondary">Stream Standard</th>
+<th class="py-4 font-label-md text-label-md uppercase text-secondary">Core V3</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr>
+<td class="py-6 font-headline-md text-headline-md">HEPA-H13 Filters</td>
+<td class="py-6"><span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span></td>
+<td class="py-6"><span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span></td>
+<td class="py-6"><span class="material-symbols-outlined text-outline">cancel</span></td>
+</tr>
+<tr>
+<td class="py-6 font-headline-md text-headline-md">Carbon Brush Bars</td>
+<td class="py-6"><span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span></td>
+<td class="py-6"><span class="material-symbols-outlined text-outline">cancel</span></td>
+<td class="py-6"><span class="material-symbols-outlined text-outline">cancel</span></td>
+</tr>
+<tr>
+<td class="py-6 font-headline-md text-headline-md">Extended Power Cells</td>
+<td class="py-6"><span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span></td>
+<td class="py-6"><span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span></td>
+<td class="py-6"><span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- Newsletter / Warranty CTA -->
+<section class="max-w-container-max mx-auto px-gutter my-section-gap-lg">
+<div class="bg-on-background text-white p-12 md:p-16 flex flex-col md:flex-row justify-between items-center gap-12">
+<div class="max-w-xl">
+<h2 class="font-display-lg text-display-lg mb-4">Never Miss a <br/>Service Interval.</h2>
+<p class="font-body-lg text-body-lg text-white/70">Register your device to receive automated replacement alerts based on your actual usage data and system health telemetry.</p>
+</div>
+<div class="w-full md:w-auto">
+<button class="w-full md:w-auto bg-primary text-white font-label-md text-label-md px-12 py-5 rounded hover:bg-on-primary-fixed-variant transition-transform active:scale-[0.98]">
+                    REGISTER YOUR DEVICE
+                </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter w-full py-section-gap-md px-gutter max-w-container-max mx-auto">
+<div class="md:col-span-4">
+<div class="font-headline-sm text-headline-sm font-bold text-on-surface mb-6">AeroPrecision</div>
+<p class="font-body-md text-body-md text-secondary max-w-xs">Engineered for absolute reliability. High-performance maintenance solutions for modern air systems.</p>
+</div>
+<div class="md:col-span-2">
+<h4 class="font-label-md text-label-md font-bold mb-6">Catalog</h4>
+<ul class="space-y-4">
+<li><a class="font-label-sm text-label-sm text-secondary hover:text-on-surface transition-colors" href="#">Parts Catalog</a></li>
+<li><a class="font-label-sm text-label-sm text-secondary hover:text-on-surface transition-colors" href="#">Maintenance Guides</a></li>
+</ul>
+</div>
+<div class="md:col-span-2">
+<h4 class="font-label-md text-label-md font-bold mb-6">Support</h4>
+<ul class="space-y-4">
+<li><a class="font-label-sm text-label-sm text-secondary hover:text-on-surface transition-colors" href="#">Warranty Terms</a></li>
+<li><a class="font-label-sm text-label-sm text-secondary hover:text-on-surface transition-colors" href="#">Service Centers</a></li>
+</ul>
+</div>
+<div class="md:col-span-4">
+<h4 class="font-label-md text-label-md font-bold mb-6">Compliance</h4>
+<ul class="space-y-4">
+<li><a class="font-label-sm text-label-sm text-secondary hover:text-on-surface transition-colors" href="#">Privacy Policy</a></li>
+<li class="font-label-sm text-label-sm text-secondary mt-8">© 2024 AeroPrecision Engineering. All rights reserved.</li>
+</ul>
+</div>
+</div>
+</footer>
+<script>
+    // Scroll-triggered fading effect for the sidebar
+    window.addEventListener('scroll', () => {
+        const sidebar = document.getElementById('category-sidebar');
+        const scrollPosition = window.scrollY;
+        const bannerHeight = 400; // Height of the Category Banner
+        
+        if (scrollPosition > bannerHeight) {
+            // As we scroll past the banner, the sidebar becomes slightly translucent
+            // to emphasize the content grid while maintaining visibility.
+            // Or transition its background. Here we use a subtle opacity shift and slight slide.
+            const fadeStart = bannerHeight;
+            const fadeEnd = bannerHeight + 600;
+            const progress = Math.min(Math.max((scrollPosition - fadeStart) / (fadeEnd - fadeStart), 0), 1);
+            
+            // Subtle fade to 0.7 opacity as user scrolls deep into products
+            sidebar.style.opacity = 1 - (progress * 0.3);
+            sidebar.style.transform = `translateY(${progress * 10}px)`;
+        } else {
+            sidebar.style.opacity = 1;
+            sidebar.style.transform = 'translateY(0)';
+        }
+    });
+</script>
+</body></html>
